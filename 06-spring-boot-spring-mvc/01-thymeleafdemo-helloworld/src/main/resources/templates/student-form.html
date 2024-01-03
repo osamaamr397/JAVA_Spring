@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <title>Student Registration Form</title>
+</head>
+<body>
+<h3>Student Registration Form</h3>
+
+<form th:action="@{/processStudentForm}"th:object="${student}" method="post">
+First name:<input type="text"th:field="*{firstName}">
+    <!--is shortcut syntax for ${student.firstName}-->
+    <br><br>
+Last name:<input type="text"th:field="*{lastName}">
+    <br><br>
+    Country:
+    <select th:field="*{country}">
+     <option th:each="tempCountry : ${countries}"th:value="${tempCountry}"th:text="${tempCountry}"/>
+    </select>
+    <br><br>
+    <!--
+    Programing Languages :
+    <input type="radio" th:field="*{progLang}" th:value="Java">Java</input>
+    <input type="radio" th:field="*{progLang}" th:value="Python">Python</input>
+    <input type="radio" th:field="*{progLang}" th:value="C++">C++</input>
+    -->
+    Programing Languages :
+
+    <input type="radio" th:field="*{progLang}" th:each="tempLang : ${languages}" th:value="${tempLang}"th:text="${tempLang}">
+
+    <br><br>
+    <!--
+    Favorite Systems :
+    <input type="checkbox"th:field="*{favoriteSystems}"th:value="Linux">Linux</input>
+    <input type="checkbox"th:field="*{favoriteSystems}"th:value="Windows">Windows</input>
+    <input type="checkbox"th:field="*{favoriteSystems}"th:value="MacOs">MacOs</input>
+    -->
+    <br><br>
+    Favorite Systems :
+    <input type="checkbox" th:field="*{favoriteSystems}"th:each="tempSystem:${systems}"th:value="${tempSystem}"th:text="${tempSystem}">
+    <input type="submit" value="Submit">
+    <br><br>
+    <!--when form is submited spring mvc will create new student instance and add to the model
+    then call
+    student.setFirstName()
+    student.setLastName()
+    -->
+
+
+</form>
+
+</body>
+</html>
