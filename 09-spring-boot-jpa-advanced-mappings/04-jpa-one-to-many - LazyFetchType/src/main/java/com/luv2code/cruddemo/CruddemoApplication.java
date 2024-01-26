@@ -34,7 +34,7 @@ public class CruddemoApplication {
 		}
 
 	private void findCoursesForInstructor(AppDAO appDAO) {
-		int theId=1;
+		int theId=4;
 		System.out.println("Finding instructor id: "+theId);
 		Instructor tempInstructor=appDAO.findInstructorById(theId);
 		System.out.println("tempInstructor: "+tempInstructor);
